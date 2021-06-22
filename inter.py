@@ -104,6 +104,9 @@ def imprimirNodos():
 def mostrarInf():
     os.startfile("acerca.html")
 
+def docmu():
+    os.startfile('Documentacion-Proyecto1.pdf')
+
 # -------------- Barra Herramientas --------------------
 menu = Menu()
 raiz.config(menu=menu)    
@@ -116,7 +119,7 @@ Report.add_command(label='HTML', command=lambda:repHtml)
 Report.add_command(label='GRAPHIZ', command=lambda:PngGraphiz(grapCol))
 
 menu.add_cascade(label='Ayuda', menu=Ayuda)
-Ayuda.add_command(label='DOCUMENTACION')
+Ayuda.add_command(label='DOCUMENTACION', command=lambda:docmu)
 Ayuda.add_command(label='ACERCA DE MI', command=lambda:mostrarInf)
 
 
