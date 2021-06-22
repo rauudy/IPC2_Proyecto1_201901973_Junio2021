@@ -2,9 +2,10 @@
 
 from tkinter import *
 from dispersa import *
+import os
 
 raiz = Tk()
-raiz.title('Proyecto 1')
+raiz.title('Blokker')
 frame=Frame(raiz)
 frame.pack()
 frame.config(width=900, height=600)
@@ -31,6 +32,12 @@ colorj2=StringVar()
 columnas=''
 filas=''
 grapCol=0
+puntosJ1=1
+puntosJ2=0
+
+# --------------------- Imagenes ----------------------
+  
+
 
 # ---------------------------- Funciones ---------------------------------------
 
@@ -56,6 +63,8 @@ def matriz(x,y):
 def PngGraphiz(col):
     m.graphiz(col)  
 
+def repHtml():
+    m.imprimirHtml()
 # ------------------ Insertar Judador1 --------------------
 def extraerJ1():
     columnas = cj1.get()
@@ -79,12 +88,21 @@ def extraerJ2():
 def movimiento():
     mov.set('Pieza puesta en' )
 
+def puntaj1 ():
+    global puntosJ1
+    lblJ1P.set(str(puntosJ1))
+    puntosJ1+=1
+
+
 # ------------------ Insertar en Matriz --------------------
 def insertarPieza(fila,columna,color):
     m.insertarM(fila,columna,color)
 
 def imprimirNodos():
     m.recorrerFilas()
+
+def mostrarInf():
+    os.startfile("acerca.html")
 
 # -------------- Barra Herramientas --------------------
 menu = Menu()
@@ -94,12 +112,12 @@ Report=Menu(menu, tearoff=0)
 Ayuda=Menu(menu, tearoff=0)
 
 menu.add_cascade(label='Reporte', menu=Report)
-Report.add_command(label='HTML')
+Report.add_command(label='HTML', command=lambda:repHtml)
 Report.add_command(label='GRAPHIZ', command=lambda:PngGraphiz(grapCol))
 
 menu.add_cascade(label='Ayuda', menu=Ayuda)
 Ayuda.add_command(label='DOCUMENTACION')
-Ayuda.add_command(label='ACERCA DE MI')
+Ayuda.add_command(label='ACERCA DE MI', command=lambda:mostrarInf)
 
 
 # -------------------- Dimensiones de Tablero ----------------------------------
@@ -120,6 +138,7 @@ btnTablero = Button(frame, text='Crear \nTablero', command=extraerDimension)
 btnTablero.grid(row=0,column=24, rowspan=2, columnspan=2)
 
 # ---------------------- Informacion Jugadores --------------------------------
+
 
 # -------------- Jugador1 --------------------
 lblJ1 = Label(frame, text='Jugador1')
@@ -168,6 +187,9 @@ mov.grid(row=19,column=22, columnspan=4)
 
 # ------------------------ INSERTAR PIEZAS -------------------------------------
 
+lEle = Label(frame, text='Hola')
+lEle.grid(row=8, column=22)
+
 # -------------- Jugador1 -------------------- 
 lblJ1_D = Label(frame, text='Jugador1')
 lblJ1_D.grid(row=12,column=22, columnspan=4)
@@ -185,6 +207,7 @@ txtJ1_C = Entry(frame, width=2, textvariable=cj1)
 txtJ1_C.grid(row=14,column=23)
 
 btnJ1_pieza = Button(frame, text='Poner', command=extraerJ1)
+#btnJ1_pieza.config(command=puntaj1)
 btnJ1_pieza.grid(row=13,column=24, rowspan=2, columnspan=2)
 
 # -------------- Jugador2 --------------------

@@ -1,5 +1,6 @@
 from nodos import Nodo,nodoEncabezado
 from encabezado import listaEncabezado
+import os
 
 class Mdispersa:
     def __init__(self):
@@ -74,6 +75,24 @@ class Mdispersa:
             print("")
             eFila=eFila.siguiente
 
+    def imprimirHtml(self):
+        ht = open('Report.html','w')
+        eFila=self.eFilas.primero
+        ht.write("\n<h2>Recorrido por filas</h2>\n")
+
+        while(eFila != None):
+            actual = eFila.accesoNodo
+            while(actual != None):
+                ht.write(actual.valor + " ",end="")
+                ht.write(" Fila: " + str(actual.fila),end="")
+                ht.write("| Columna: " + str(actual.columna),end="")
+                ht.write()
+                actual=actual.derecha
+            ht.write("")
+            eFila=eFila.siguiente
+        
+        ht.close()
+
 
 
     def graphiz(self, columnas):
@@ -82,7 +101,7 @@ class Mdispersa:
         f = open('graphizP1.dot', 'w', encoding='utf-8')
         f.write("digraph proyec{\n")
         f.write('tabla[shape = plaintext, fontsize = 10, label = <\n')
-        f.write('<TABLE BORDER = " 0" border  = "0" cellborder = "0">\n"')
+        f.write('<TABLE BORDER = " 1" border  = "0" cellborder = "0">\n"')
         
         efila = self.eFilas.primero
         f.write('<tr>')
@@ -110,17 +129,13 @@ class Mdispersa:
         f.write('>];')
         f.write('}')
         f.close()
-        #os.system('dot -Tpng grafica.dot -o S.png')
+        os.system('dot -Tpng graphizP1.dot -o zi.png')
 
 
 #m = Mdispersa()
 
 # Parametros Fila, Columna, Valor
 #m.insertarM('1','0', "adolfo")
-#m.insertarM('2','1', "brandon")
-#m.insertarM(0,1, "daniel")
-#m.insertarM(1,2, "eduardo")
-#m.insertarM(0,2, "diego")
 #m.insertarM(0,4, "javier")
 
 #m.recorrerColumnas()
