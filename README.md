@@ -1,2 +1,7 @@
-# IPC2_Proyecto1_201901973_
-Proyecto 1, Laboratorio de IPC2, Junio
+# IPC2 Proyecto1 201901973
+
+Raudy David Cabrera Contreras
+
+
+Proyecto 1
+Python, Tkinter, MiniDom, Os
