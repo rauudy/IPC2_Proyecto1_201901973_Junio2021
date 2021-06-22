@@ -3,6 +3,8 @@
 from tkinter import *
 from dispersa import *
 import os
+from xml import dom
+from xml.dom import minidom 
 
 raiz = Tk()
 raiz.title('Blokker')
@@ -113,6 +115,11 @@ raiz.config(menu=menu)
 
 Report=Menu(menu, tearoff=0)
 Ayuda=Menu(menu, tearoff=0)
+Arch=Menu(menu, tearoff=0)
+
+menu.add_cascade(label='Archivo', menu=Arch)
+Arch.add_command(label='ABRIR')
+Arch.add_command(label='GUARDAR')
 
 menu.add_cascade(label='Reporte', menu=Report)
 Report.add_command(label='HTML', command=lambda:repHtml)
